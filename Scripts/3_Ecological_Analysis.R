@@ -318,7 +318,7 @@ individuals_gtable <- individuals_table %>%
              "Kugluktuk\n(Qurluqtuq)\n" ~ px(300))
 
 gtsave(data = individuals_gtable, 
-       filename = "plots/individualstable2.png")
+       filename = "Tables/individualstable2.png")
 
 ##### samples table final for both years #####
 
@@ -366,7 +366,7 @@ samples_gtable <- samples_table %>%
              "Kugluktuk\n(Qurluqtuq)\n" ~ px(300))
 
 gtsave(data = samples_gtable, 
-       filename = "plots/samples_gtable.png")
+       filename = "Tables/samples_gtable.png")
 
 
 ##### PA table for thesis ##### 
@@ -431,7 +431,7 @@ PA_gtable <- KBIMP_combined %>%
 
 
 gtsave(data = PA_gtable, 
-       filename = "plots/PA_gtable.png")
+       filename = "Tables/PA_gtable.png")
 
 
 ####  PART 4 - Running iNEXT analysis and generating graphs ----
@@ -558,7 +558,7 @@ iNext_bf <- ggiNEXT(em.inext.sim)+
   annotate("text", x = 100, y = 23, label = "87.5%", color = "#FFC000", size = 5) +
   ggtitle("Black flies")
 
-ggsave("plots/inext2025bf.png", iNext_bf , width = 6, height = 4, dpi = 300, bg = "transparent")
+ggsave("Plots/inext2025bf.png", iNext_bf , width = 6, height = 4, dpi = 300, bg = "transparent")
 
 ##### Both places, mosquitoes, both months #####
 
@@ -823,7 +823,7 @@ combined_iNextplot <- (iNext_total + iNext_mos + iNext_bf +
                          iNext_cul_aug + iNEXT_bf_aug) +
   plot_layout(design = layout_design, guides = "collect") 
 
-png("plots/combinediNext.png", width = 3500, height = 4000, res = 300)
+png("Plots/combinediNext.png", width = 3500, height = 4000, res = 300)
 
 print(combined_iNextplot)
 
@@ -1078,7 +1078,7 @@ latlonschaefer_table <- schaeferdata %>%
   tab_options(data_row.padding = px(5)) 
 
 gtsave(data = latlonschaefer_table, 
-       filename = "plots/latlonschaefer.png")
+       filename = "Tables/latlonschaefer.png")
 
 
 ##### venn diagram/ determining which species are different #####
@@ -1286,7 +1286,7 @@ speciesrichplot <- ggplot() +
                "Simuliidae" = "Black flies", 
                "Culicidae" = "Mosquitoes")))
 
-ggsave("plots/lineSRtotalSRcbayvskug.png", speciesrichplot , width = 10, height = 4, dpi = 300, bg = "transparent")
+ggsave("Plots/lineSRtotalSRcbayvskug.png", speciesrichplot , width = 10, height = 4, dpi = 300, bg = "transparent")
 
 #### PART 7 - Multidimentional 2024 and 2025 ----
 
@@ -1394,7 +1394,7 @@ nmdsplotmos <- ggplot(data = nmds_scores, aes(x = NMDS1, y = NMDS2)) +
 nmdsplotmos 
 
 
-ggsave("plots/nmdsplotmos2024and2025.png", nmdsplotmos, width = 3, height = 3, dpi = 300)
+ggsave("Plots/nmdsplotmos2024and2025.png", nmdsplotmos, width = 3, height = 3, dpi = 300)
 
 
 ##### just black flies -----
@@ -1506,7 +1506,7 @@ nmdsplotbf <- ggplot(data = nmds_scores, aes(x = NMDS1, y = NMDS2)) +
 nmdsplotbf
 
 
-ggsave("plots/nmdsplotbf2024and202all5.png", nmdsplotbf, width = 6, height = 6, dpi = 300)
+ggsave("Plots/nmdsplotbf2024and202all5.png", nmdsplotbf, width = 6, height = 6, dpi = 300)
 
 #two of the points are making it really hard to see the data so I am going to remove these points for plotting 
 ##### - just black flies with those two kugluktuk samples removed -----
@@ -1618,7 +1618,7 @@ nmdsplotbf2 <- ggplot(data = nmds_scores, aes(x = NMDS1, y = NMDS2)) +
 
 nmdsplotbf2 
 
-ggsave("plots/nmdsplotbf22024and2025.png", nmdsplotbf2, width = 3, height = 3, dpi = 300)
+ggsave("Plots/nmdsplotbf22024and2025.png", nmdsplotbf2, width = 3, height = 3, dpi = 300)
 
 ##### mosquitoes and black flies just sweep nets -----
 
@@ -1885,7 +1885,7 @@ Vectortable <-  vector_change %>%
   tab_options(data_row.padding = px(5)) 
 
 gtsave(data = Vectortable, 
-       filename = "plots/Vectortable.png")
+       filename = "Tables/Vectortable.png")
 
 ##### iNEXT for confiedence intervals #####
 
@@ -2000,7 +2000,7 @@ vectorchange <- ggplot() +
         strip.background = element_rect(fill = NA, color = NA),
         strip.text  = element_text(face = "bold", size = 14)) 
 
-ggsave("plots/vector.png", vectorchange , width = 8, height = 4, dpi = 300, bg = "transparent")
+ggsave("Plots/vector.png", vectorchange , width = 8, height = 4, dpi = 300, bg = "transparent")
 
 
 #### PART 10 - Comparing the number of blood feeding species  ----
@@ -2161,7 +2161,7 @@ bitingchange <- ggplot() +
         strip.background = element_rect(fill = NA, color = NA),
         strip.text  = element_text(face = "bold", size = 14)) 
 
-ggsave("plots/bitingchange.png", bitingchange , width = 8, height = 4, dpi = 300, bg = "transparent")
+ggsave("Plots/bitingchange.png", bitingchange , width = 8, height = 4, dpi = 300, bg = "transparent")
 
 
 ##### combining vector and biting plot #####
@@ -2170,7 +2170,7 @@ combinedchangeplot <- (bitingchange + vectorchange) +
   plot_layout(ncol = 2) +
   plot_annotation(tag_levels = list("A"))
 
-png("plots/changeplot.png", width =3000, height = 1500, res = 300)
+png("Plots/changeplot.png", width =3000, height = 1500, res = 300)
 
 print(combinedchangeplot)
 
@@ -2247,7 +2247,7 @@ map_kug <- ggmap(sq_map2) +
 
 map_kug
 
-ggsave("plots/map_kugluktuk.png", map_kug, width = 4, height = 3, dpi = 300)
+ggsave("Plots/map_kugluktuk.png", map_kug, width = 4, height = 3, dpi = 300)
 
 ##### Map for Cambridge Bay sample locations #####
 
@@ -2306,7 +2306,7 @@ mapcbay <- ggmap(sq_map2) +
 
 mapcbay
 
-ggsave("plots/map_cbay.png", mapcbay, width = 4, height = 3, dpi = 300)
+ggsave("Plots/map_cbay.png", mapcbay, width = 4, height = 3, dpi = 300)
 
 
 ##### Nunavut locations map #####
@@ -2383,7 +2383,7 @@ nunavut_map <- ggplot() +
     axis.text = element_blank())
 
 # Save and export map
-png("plots/nunavut_sampling_map2.png", width = 1000, height = 800, res = 300)
+png("Plots/nunavut_sampling_map2.png", width = 1000, height = 800, res = 300)
 print(nunavut_map)
 dev.off()
 
@@ -2487,7 +2487,7 @@ circumpolarmap <- ggplot() +
     axis.text = element_blank(),
     axis.title = element_blank())
 
-png("plots/circumpolarmap.png", width = 1400, height = 1400, res = 300)
+png("Plots/circumpolarmap.png", width = 1400, height = 1400, res = 300)
 
 print(circumpolarmap)
 
@@ -2590,7 +2590,7 @@ increasingtemp <- ggplot(temp_avgmonthly, aes(x = Year, y = avg_monthly_temp,
         strip.text  = element_text(face = "bold", size = 14)) 
 
 
-ggsave("plots/increasingtemps.png", increasingtemp , width = 8, height = 4, dpi = 300, bg = "transparent")
+ggsave("Plots/increasingtemps.png", increasingtemp , width = 8, height = 4, dpi = 300, bg = "transparent")
 
 
 #### PART 13 - Creating range maps for vector species ----
@@ -3049,7 +3049,7 @@ venustummap <- ggplot() +
 combined_plot <- (aedesexcruciansmap + aedescommunismap + hexodontusmap+ nigripismap + decorummap + vittinummap + noellerimap + venustummap) +
   plot_layout(guides = "collect", ncol = 4) 
 
-png("plots/histmaps.png", width = 4000, height = 2000, res = 300)
+png("Plots/histmaps.png", width = 4000, height = 2000, res = 300)
 
 print(combined_plot)
 
@@ -3100,7 +3100,7 @@ bubbleplot <-ggplot(POSCON_seqs, aes(x = `Insect Concentration`,
         strip.text  = element_text(face = "bold", size = 12)) 
 
 
-ggsave("plots/bubbleplot.png", bubbleplot , width = 8, height = 3, dpi = 300, bg = "transparent")
+ggsave("Plots/bubbleplot.png", bubbleplot , width = 8, height = 3, dpi = 300, bg = "transparent")
 
 
 

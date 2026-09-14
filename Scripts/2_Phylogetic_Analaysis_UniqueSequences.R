@@ -81,7 +81,7 @@ KBIMP2024 <- KBIMP2024 %>%
 
 #writing this file to be used in the sample count 
 
-write_tsv(KBIMP2024, "processed-data/KBIMP2024_clean.tsv")
+write_tsv(KBIMP2024, "Processed_data/KBIMP2024_clean.tsv")
 
 #preparing 2025 data for combination 
 
@@ -120,7 +120,7 @@ alighned_kbimpmos_DNA <- DNAStringSet(muscle::muscle(kbimp_mos_DNA))
 unique_seqsmos <- unique(alighned_kbimpmos_DNA)
 
 writeXStringSet(unique_seqsmos,
-                filepath = "processed-data/uniquemosseqforbold.fasta",
+                filepath = "Processed_data/uniquemosseqforbold.fasta",
                 format = "fasta")
 
 kbimp_mos_phydat <- as.phyDat(unique_seqsmos, type = "DNA")
@@ -263,7 +263,7 @@ mosquitotree2024 <- (ggtree(rooted.bstree.mos, layout = "rectangular", branch.le
                           hjust = 0.7, size = 3, 
                           color = "red", fill = "white") 
 
-ggsave("plots/mosallseqtree.png", plot = mosquitotree2024, width = 14, height = 16, dpi = 300)
+ggsave("Plots/mosallseqtree.png", plot = mosquitotree2024, width = 14, height = 16, dpi = 300)
 
 
 #### both years black flies just Simulium genus ----
@@ -285,7 +285,7 @@ alighned_kbimpsim_DNA <- DNAStringSet(muscle::muscle(kbimp_sim_DNA))
 unique_seqssim <- unique(alighned_kbimpsim_DNA)
 
 writeXStringSet(unique_seqssim,
-                filepath = "processed-data/unique_simseq_forbold.fasta",
+                filepath = "Processed_data/unique_simseq_forbold.fasta",
                 format = "fasta")
 
 kbimp_sim_phydat <- as.phyDat(unique_seqssim, type = "DNA")
@@ -494,7 +494,7 @@ simtreespecies2024 <- (ggtree(rooted.bstree.sim, layout = "rectangular", branch.
 
 simtreespecies2024 
 
-ggsave("plots/Simulium_treespecies.png", plot = simtreespecies2024, width = 15, height = 17, dpi = 300)
+ggsave("Plots/Simulium_treespecies.png", plot = simtreespecies2024, width = 15, height = 17, dpi = 300)
 
 
 #### both years black flies not Simulium genus ----
@@ -516,7 +516,7 @@ alighned_kbimpmeta_DNA <- DNAStringSet(muscle::muscle(kbimp_meta_DNA))
 unique_seqsmeta <- unique(alighned_kbimpmeta_DNA)
 
 writeXStringSet(unique_seqsmeta,
-                filepath = "processed-data/unique_metaseq_forbold.fasta",
+                filepath = "Processed_data/unique_metaseq_forbold.fasta",
                 format = "fasta")
 
 kbimp_meta_phydat <- as.phyDat(unique_seqsmeta, type = "DNA")
@@ -662,7 +662,7 @@ metatreespecies2024 <- (ggtree(rooted.bstree.meta, layout = "rectangular",
 metatreespecies2024 
 
 
-ggsave("plots/meta_treespecies.png", plot = metatreespecies2024, width = 18, height = 5, dpi = 300)
+ggsave("Plots/meta_treespecies.png", plot = metatreespecies2024, width = 18, height = 5, dpi = 300)
 
 
 ##### species assignments -----
@@ -695,7 +695,7 @@ KBIMP_updatedspecies <- KBIMP %>%
   select(Sample, Species, Genus, Family, update_flag, Sequence) 
  
 
-write_tsv(KBIMP_updatedspecies, "processed-data/KBIMP_updatedspecies.tsv")
+write_tsv(KBIMP_updatedspecies, "Processed_data/KBIMP_updatedspecies.tsv")
 
 
 BOLDinvest <- bind_rows(BOLDID_mos, BOLDID_sim, BOLDID_meta)
@@ -761,7 +761,7 @@ BOLDIDspecies_table <- BOLDIDspecies %>%
       columns = c(Species)))
   
 gtsave(data = BOLDIDspecies_table , 
-       filename = "plots/BOLDIDspecies_table.png")
+       filename = "Tables/BOLDIDspecies_table.png")
 
 
 #### Analysis of genetic divergences ----
@@ -848,7 +848,7 @@ bf_dis_matrix <- averagedist_bf %>%
              decimals = 5) 
 
 gtsave(data = bf_dis_matrix , 
-       filename = "plots/bf_dis_matrix.png", vwidth = 2300, vheight = 1500)
+       filename = "Tables/bf_dis_matrix.png", vwidth = 2300, vheight = 1500)
 
 ##### mosquitoes #####
 
@@ -935,7 +935,7 @@ mosquito_dis_matrix <- results %>%
              decimals = 5) 
 
 gtsave(data = mosquito_dis_matrix , 
-       filename = "plots/mosquito_dis_matrix.png")
+       filename = "Tables/mosquito_dis_matrix.png")
 
 
 #### preparing data for the Popart figure ----
@@ -952,7 +952,7 @@ alighned_nigripis_popart <- DNAStringSet(
   muscle::muscle(nigripis_popart2))
 
 writeXStringSet(alighned_nigripis_popart,
-                filepath = "processed-data/alighned_hexodontus.fasta",
+                filepath = "Processed_data/alighned_hexodontus.fasta",
                 format = "fasta")
 
 nigripis_popart_phydat <- as.phyDat(alighned_nigripis_popart, type = "DNA")
@@ -962,7 +962,7 @@ alighned_nigripis_popart_mat <- as.character(alighned_nigripis_popart)
 
 # Write to NEXUS format (seqinr writes sequential by default)
 write.nexus.data(alighned_nigripis_popart_mat, 
-                 file = "processed-data/output_alignment_nigripis.nex"
+                 file = "Processed_data/output_alignment_nigripis.nex"
                  ,format = "dna")
 
 
