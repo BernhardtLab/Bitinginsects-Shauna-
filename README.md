@@ -82,6 +82,10 @@ Contains all primary data used in analysis.
 #### Historical Dataset
 - `schafer_2012.csv`
 
+#### Positive control data 
+-`positivecontrolplatemap.csv`
+-`COINEM_POS_TaxonomicAssignments.tsv`
+
 ---
 
 ### Processed Data

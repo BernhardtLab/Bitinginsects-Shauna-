@@ -4,6 +4,9 @@
 #and extraction to give information on controls extractiondata2025.csv and 
 #PCRcontrol_data.csv. 
 
+
+#### PART 1 - loading packages and files ----
+
 #Output will be the filtered metabarcoding file which has the controls filtered and removed
 
 library(stringr)
@@ -12,9 +15,6 @@ library(readr)
 library(viridis)
 library(ggplot2)   
 
-#### - PART 1 - 2024 barcoding data  ----
-
-##### Filtering negative controls #####
 
 #input raw sequence data 
 
@@ -53,10 +53,17 @@ length(KGLKTK2024_COI$Sample) #232
 length(CBAY2024_plates12456$Sample) #635
 length(CBAY2024_plate3$Sample) #261
 
+#### - PART 2 - 2024 barcoding data  ----
+
+##### Filtering negative controls #####
+
+
 #cleaning the sample data from 2024 to be in the correct format
 
 kbimp2024_sampledata_clean <- kbimp2024_sampledata %>%
   right_join(kbimp2024_collectionsdata, join_by(FieldID == Sample)) %>% #joining individual well data with overall sample data
+  mutate(`Date collected` = 
+           coalesce(`Date collected`, `Date set`)) %>%
   mutate(date_parts = str_split(`Date collected`, "-"),
         end_date_raw = sapply(date_parts, `[`, 2),
         end_date_raw = ifelse(is.na(end_date_raw), 
@@ -66,18 +73,25 @@ kbimp2024_sampledata_clean <- kbimp2024_sampledata %>%
     Month = month(Date_parsed, label = TRUE)) %>%
   #although an error comes from parsing all of the months are correct
   select(SampleID, FieldID, `Date collected`, 
-         Lat.y, Long, SamplingProtocol, Month) %>%
-    filter(!SamplingProtocol %in% c("D-ring dipnet (250 micron)",
+         Lat.y, Long, SamplingMethod, Month) %>%
+    filter(!SamplingMethod %in% c("D-ring dipnet (250 micron)",
                                    "DipNet", 
                                    "Plankton net (64 micron)", 
                                    "Surber net",
-                                   "SurberNet")) %>%
-  mutate(SampleID= gsub("KBIMP_004_H11", "KBIMP-_006_G3", SampleID)) %>%
-  mutate(SampleID= gsub("KBIMP_004_D12", "KBIMP-_006_G4", SampleID)) %>%
-  mutate(SampleID= gsub("KBIMP_004_E12", "KBIMP-_006_G5", SampleID)) %>%
-  mutate(SampleID= gsub("KBIMP_004_F12", "KBIMP-_006_G6", SampleID)) %>%
-  mutate(SampleID= gsub("KBIMP_004_G12", "KBIMP-_006_G7", SampleID)) %>%
-  mutate(SampleID= gsub("KBIMP_004_H10", "KBIMP-_006_G2", SampleID)) 
+                                   "SurberNet",
+                                   "Dipnet")) %>%
+  mutate(SampleID = 
+           gsub("KBIMP_004_H11", "KBIMP-_006_G3", SampleID)) %>%
+  mutate(SampleID =
+           gsub("KBIMP_004_D12", "KBIMP-_006_G4", SampleID)) %>%
+  mutate(SampleID =
+           gsub("KBIMP_004_E12", "KBIMP-_006_G5", SampleID)) %>%
+  mutate(SampleID =
+           gsub("KBIMP_004_F12", "KBIMP-_006_G6", SampleID)) %>%
+  mutate(SampleID =
+           gsub("KBIMP_004_G12", "KBIMP-_006_G7", SampleID)) %>%
+  mutate(SampleID =
+           gsub("KBIMP_004_H10", "KBIMP-_006_G2", SampleID)) 
 
 write_csv(kbimp2024_sampledata_clean, 
           "Processed_data/kbimp2024_sampledata_clean.csv")

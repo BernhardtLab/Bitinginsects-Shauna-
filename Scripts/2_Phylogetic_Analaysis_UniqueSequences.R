@@ -30,10 +30,10 @@ KBIMP2024 <- read_tsv(
   file = "Processed_data/KBIMP2024_filteredCOI.tsv")
 
 KBIMP2025 <- read_tsv(
-  file = "processed-data/KBIMP2025_filteredCOI.tsv")
+  file = "Processed_data/KBIMP2025_filteredCOI.tsv")
 
 kbimp2024_sampledata_clean <- read_csv( 
-          files = "Processed_data/kbimp2024_sampledata_clean.csv")
+          file = "Processed_data/kbimp2024_sampledata_clean.csv")
 
 Outgroup <- read_csv(file = "Raw_data/Outgroup.csv")
 

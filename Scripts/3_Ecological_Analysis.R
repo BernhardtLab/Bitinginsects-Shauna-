@@ -2,11 +2,11 @@
 #To run this data set you need the meatdata from 2024, the fixed site names from 
 #2024, the metadata from both places in 2025, the updates species data sets from 
 #both years (KBIMP2025_updatedspecies and KBIMP2025_updatedspecies), the data set
-#from schafer from 2012 (sr_2012), and the vector dataset from this time 
+#from Schafer from 2012 (sr_2012), and the vector data set from this time 
 #this will output multiple plots including the rarefaction curves, vector change plot
-#total species richness, and multidimensonal sclaing and well as mulitple statistical tests. 
+#total species richness, and multidimensional scaling and well as multiple statistical tests. 
 
-#### PART 1 - Loading packages, Openeing files, Running functions ----
+#### PART 1 - Loading packages, Opening files, Running functions ----
 
 ##### Packages #####
 
@@ -41,37 +41,42 @@ library(cancensus)
 ##### Files #####
 
 CBAY2025_metadata <- read_csv(
-  file = "raw-data2/CBAY2025_metadata.csv")
+  file = "Raw_data/Metadata/CBAY2025_metadata.csv")
 
 KGLTK2025_metadata <- read_csv(
-  file = "raw-data2/KGLTK2025_metadata.csv")
+  file = "Raw_data/Metadata/KGLTK2025_metadata.csv")
 
 KBIMP_combined <- read_tsv(
-  file = "processed-data/KBIMP_updatedspecies.tsv")
+  file = "Processed_data/KBIMP_updatedspecies.tsv")
 
 vector_change <- read_csv(
-  file = "raw-data2/vector_change.csv")
+  file = "Raw_data/Metadata/vector_change.csv")
 
 kbimp2024_sampledata_clean <- read_csv(
-  file = "processed-data/kbimp2024_sampledata_clean.csv")
+  file = "Processed_data/kbimp2024_sampledata_clean.csv")
 
 nonbiting_species <- read.csv(
-  file = "raw-data2/non_biting_species.csv")
-
-expectedbf <- read.csv(
-  file = "raw-data2/expectedbf.csv")
+  file = "Raw_data/Metadata/non_biting_species.csv")
 
 NBP <- read.csv(
-  file = "raw-data2/NorthernBiodiversityProgram - Simuliidae P.Schaefer.csv")
+  file = "Raw_data/Schaefer2014_data/NorthernBiodiversityProgram - Simuliidae P.Schaefer.csv")
 
 NBP2 <- read.csv(
-  file = "raw-data2/ROM_NBP_Simuliidae_2.csv")
+  file = "Raw_data/Schaefer2014_data/ROM_NBP_Simuliidae_2.csv")
 
 NBP3 <- read.csv(
-  file = "raw-data2/ROM-NPB Simuliidae3.csv")
+  file = "Raw_data/Schaefer2014_data/ROM-NPB Simuliidae3.csv")
 
 KBIMP2024 <- read_tsv(
-  file = "processed-data/KBIMP2024_clean.tsv")
+  file = "Processed_data/KBIMP2024_clean.tsv")
+
+poscontrolplatemap <- read_csv(
+  file = "Raw_data/Pos_control/poscontrolplatemap.csv")
+
+POSCON_seqs <- read_tsv(
+  file = "Raw_data/Pos_control/COINEM_POS_TaxonomicAssignments.tsv")
+
+
 
 ##### Packages #####
 
@@ -136,8 +141,9 @@ KBIMP2025_metadata <- CBAY2025_metadata_clean %>%
 ##### preparing the 2024 data #####
 
 KBIMP2024_metadata <- kbimp2024_sampledata_clean %>%
-  dplyr::rename(SamplingMethod = SamplingProtocol) %>%
   dplyr::rename(Sample = FieldID) %>%
+  dplyr::rename(Lon = Long) %>%
+  mutate(Sector = str_extract(Sample, "^[A-Za-z]+")) %>%
   select(Sample, SamplingMethod, Sector, Month, Lon, Lat) %>%
   distinct(Sample, .keep_all = TRUE) %>%
   separate(Lat, into = c("Latdeg", "Latmin"), sep = " ",
@@ -2184,12 +2190,6 @@ dev.off()
 
 kugluktuk_mapdata <- meta_data %>%
   filter(Sector == "KGLTK") %>%
-  mutate(Lat = clean_coords(Lat)) %>%
-  mutate(Lon = clean_coords(Lon)) %>%
-  mutate(Lat = gsub("^[^ ]* ", "", Lat), 
-         Lat = as.numeric(Lat), Lat = if_else(Sector == "KGLTK", 67 + (Lat / 60), Lat), 
-         Lon = gsub("^[^ ]* ", "", Lon), Lon = as.numeric(Lon),
-         Lon = if_else(Sector == "KGLTK", -(115 + (Lon / 60)), Lon)) %>%
   filter(!is.na(Lat), !is.na(Lon)) %>%
   mutate(Year = as.character(Year)) %>%
   filter(!Sample == "KGLTK0271")
@@ -2500,7 +2500,7 @@ dev.off()
 #loading temperature data from the list of files
 
 temp_cbay <- list.files(
-  path = "raw-data2/temp_data_cbay",
+  path = "Raw_data/temp_data_cbay",
   pattern = "\\.csv$", full.names = TRUE)
 
 #combining all these files into one
@@ -2532,7 +2532,7 @@ temp_cbay_avgmonthly$trend <- predict(model)
 #loading temperature data from the list of files
 
 temp_kug <- list.files(
-  path = "raw-data2/temp_data_kug",
+  path = "Raw_data/temp_data_kug",
   pattern = "\\.csv$", full.names = TRUE)
 
 #combining all these files into one
@@ -3056,10 +3056,6 @@ print(combined_plot)
 dev.off()
 
 #### PART 14 - Positive control figure ----
-
-poscontrolplatemap <- read_csv(file = "raw-data2/poscontrolplatemap.csv")
-
-POSCON_seqs <- read_tsv(file = "raw-data2/Shauna_COINEM_POS_TaxonomicAssignments_DominantContigs.tsv")
 
 
 POSCON_seqs <- POSCON_seqs %>%
