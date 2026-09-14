@@ -1,0 +1,10 @@
+Species ,Family,Vector to ,Status ,Evidence ,Source 
+Aedes punctor/Aedes hexodontus,Culicidae,Setaria yehi,Suspected transmission ability* ,L2/L3 larva confirmed for Setaria tundra ,"Laaksonen et al., 2009"
+Aedes nigripes/Aedes impiger,Culicidae,Setaria yehi,Suspected transmission ability* ,Low speicies specificity of Setaria tundra ,"Laaksonen et al., 2009"
+Aedes excrucians,Culicidae,Setaria yehi,Suspected transmission ability* ,L2/L3 larva confirmed for Setaria tundra ,"Laaksonen et al., 2009"
+Aedes communis,Culicidae,Setaria yehi,Suspected transmission ability* ,L2/L3 larva confirmed for Setaria tundra ,"Laaksonen et al., 2009"
+Simulium decorum,Simuliidae,Onchocerca spp. (Lineage II),Suspected transmission ability* ,Present in blood meal ,"Pledger, 1978"
+Simulium noelleri,Simuliidae,Onchocerca spp. (Lineage II),Suspected transmission ability* ,Closely related species to Simulium decorum ,"Verocai, 2012"
+Simulium venustum complex,Simuliidae,Onchocerca spp. (Lineage II),Suspected transmission ability* ,Present in blood meal ,"Pledger, 1978"
+Simulium tescorum,Simuliidae,Onchocerca spp. (Lineage II),Suspected transmission ability* ,Molecular evidence ,Kulpa et al. 2021
+Simulium vittatum,Simuliidae,Onchocerca spp. (Lineage II),Suspected transmission ability* ,Molecular evidence ,Kulpa et al. 2021
