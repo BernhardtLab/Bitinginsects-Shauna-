@@ -217,6 +217,14 @@ total_row <- tabledata2 %>%
 sample_table_2024 <- bind_rows(tabledata2, total_row) %>%
   mutate(year = 2024)
   
+
+#number of samples seperated by type 
+
+tabledata2 <- KBIMP2024_metadata %>%
+  group_by(Sector, SamplingMethod) %>%
+  summarise(value = n_distinct(Sample)) %>%
+  ungroup() 
+
 #number of individuals 
 
 individual_table_2024 <- KBIMP2024 %>%
@@ -374,6 +382,53 @@ samples_gtable <- samples_table %>%
 gtsave(data = samples_gtable, 
        filename = "Tables/samples_gtable.png")
 
+
+
+##### Sample type #####
+
+#number of samples seperated by type 
+
+sampletype_table <- meta_data %>%
+  group_by(Sector, SamplingMethod, Year) %>%
+  summarise(value = n_distinct(Sample)) %>%
+  ungroup() %>%
+  pivot_wider(names_from = "Sector", values_from = "value") %>%
+  dplyr::rename("Cambridge Bay\n(Iqaluktuuttiaq)\n" = "CBAY", 
+                "Kugluktuk\n(Qurluqtuq)\n" = "KGLTK") %>%
+  gt(rowname_col = "SamplingMethod", groupname_col = "Year") %>%
+  tab_header(title = md("")) %>%
+  tab_footnote(footnote = md("")) %>%
+  cols_align(align = "right",
+             columns = everything()) %>%
+  tab_options(
+    table.border.top.width = px(0),
+    table.border.bottom.width = px(0),
+    column_labels.border.top.width = px(0),
+    column_labels.border.bottom.width = px(0),
+    table_body.hlines.width = px(0),
+    table_body.vlines.width = px(0),
+    row_group.border.top.width = px(0),
+    row_group.border.bottom.width = px(0),
+    stub.border.style = "none") %>%
+  tab_style(style = cell_text(weight = "bold"),
+            locations = list(cells_column_labels(),
+                             cells_row_groups())) %>%
+  tab_style(style = cell_borders(sides = c("bottom"),
+                                 color = "black", weight = px(2)),
+            locations = cells_title()) %>%
+  tab_style(style = cell_borders(sides = c("top"),
+                                 color = "black", weight = px(2)),
+            locations = cells_footnotes()) %>%
+  tab_style(style = cell_borders(sides = c("top", "bottom"),
+                                 color = "black", weight = px(2)),
+            locations = cells_row_groups()) %>%
+  tab_options(data_row.padding = px(5)) %>%
+  cols_width("Cambridge Bay\n(Iqaluktuuttiaq)\n" 
+             ~ px(300), 
+             "Kugluktuk\n(Qurluqtuq)\n" ~ px(300))
+
+gtsave(data = sampletype_table, 
+       filename = "Tables/sampletype_table.png")
 
 ##### PA table for thesis ##### 
 
