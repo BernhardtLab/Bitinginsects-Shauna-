@@ -25,7 +25,7 @@ CBAY2024_plates12456 <- read_tsv(
   file = "raw-data2/CBAY2024_AllPlates_OTUDetails.tsv")
 
 CBAY2024_plate3 <- read_tsv(
-  file = "raw-data2/Shauna_CBAY2024_Plate3_OTUDetails.tsv")
+  file = "raw-data2/CBAY2024_Plate3_OTUDetails.tsv")
 
 problemsamples <- read_csv(
   file = "raw-data2/problemsamples.csv")
@@ -43,7 +43,7 @@ kbimp2024_sampledata <- read_csv(
   file = "raw-data2/KBIMP2024_specimendata.csv")
 
 kbimp2024_collectionsdata <- read_csv(
-  file = "raw-data2/2024_KBIMP_Collections_Tracking.csv")
+  file = "raw-data2/KBIMP2024_Collections_Tracking.csv")
 
 df_extractioncontrols <- read_csv(
   file = "raw-data2/extractiondata2025.csv")
