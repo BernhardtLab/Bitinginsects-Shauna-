@@ -26,11 +26,16 @@ library(gt)
 
 ##### Files #####
 
-KBIMP2024 <- read_tsv(file = "processed-data/KBIMP2024_filteredCOI.tsv")
-KBIMP2025 <- read_tsv(file = "processed-data/KBIMP2025_filteredCOI.tsv")
+KBIMP2024 <- read_tsv(
+  file = "Processed_data/KBIMP2024_filteredCOI.tsv")
+
+KBIMP2025 <- read_tsv(
+  file = "processed-data/KBIMP2025_filteredCOI.tsv")
+
 kbimp2024_sampledata_clean <- read_csv( 
-          files = "processed-data/kbimp2024_sampledata_clean.csv")
-Outgroup <- read_csv(file = "raw-data2/Outgroup.csv")
+          files = "Processed_data/kbimp2024_sampledata_clean.csv")
+
+Outgroup <- read_csv(file = "Raw_data/Outgroup.csv")
 
 
 ##### Packages #####
@@ -168,7 +173,8 @@ tree_with_bs <- plotBS(rooted.bstree.mos, bs)
 
 # brining in BOLD data for tree 
 
-BOLDID_mos <- read.csv(file = "processed-data/BOLDID_aedes.csv")
+BOLDID_mos <- read.csv(
+  file = "Raw_data/Results_from_BOLD/BOLDID_aedes.csv")
 
 BOLDID_mos2 <- BOLDID_mos  %>%
   
@@ -346,7 +352,8 @@ bs_tibble <- tibble(node = internal_nodes, bootstrap = bs_numeric) %>%
 
 #bringing in bold data for final tree 
 
-BOLDID_sim <- read.csv(file = "processed-data/BOLDID_simuulidae.csv")
+BOLDID_sim <- read.csv(
+  file = "Raw_data/Results_from_BOLD/BOLDID_simuulidae.csv")
 
 BOLDID_sim2 <- BOLDID_sim  %>%
   
@@ -528,7 +535,8 @@ length(kbimp_meta_phydat) # 83 unique seq
 
 #bringing in bold data for final tree 
 
-BOLDID_meta <- read.csv(file = "processed-data/BOLDID_meta.csv")
+BOLDID_meta <- read.csv(
+  file = "Raw_data/Results_from_BOLD/BOLDID_meta.csv")
 
 BOLDID_meta2 <- BOLDID_meta  %>%
   
@@ -667,7 +675,8 @@ ggsave("Plots/meta_treespecies.png", plot = metatreespecies2024, width = 18, hei
 
 ##### species assignments -----
 
-BOLDIDspecies <- read_csv(file = "processed-data/BOLDIDspecies.csv")
+BOLDIDspecies <- read_csv(
+  file = "Raw_data/Results_from_BOLD/BOLDIDspecies.csv")
 
 # Combine BOLD tables
 BOLDresults <- bind_rows(BOLDID_mos2, BOLDID_sim2, BOLDID_meta2)

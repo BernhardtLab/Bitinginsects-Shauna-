@@ -326,9 +326,8 @@ ggplot(KBIMP2025_mosquitoes, aes(y=countspecies, x=Species)) +
 
 write_tsv(KBIMP2025_COI_fil2, "Processed_data/KBIMP2025_filteredCOI.tsv")
 
-rm(df_extractioncontrols, df_PCRcontrols, KBIMP2025_COI, KBIMP2025_COI_fil,
-   KBIMP2025_mosquitoes, KBIMP2025_blackflyspecies,KBIMP2025_bitinggenus, 
-   KBIMP2025_COI_family)
+rm(df_extractioncontrols, df_PCRcontrols, KBIMP2025_COI, KBIMP2025_COI_fil,KBIMP2025_mosquitoes, KBIMP2025_blackflyspecies,
+KBIMP2025_bitinggenus, KBIMP2025_COI_family)
 
 
 
