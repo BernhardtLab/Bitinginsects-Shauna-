@@ -40,17 +40,38 @@ library(cancensus)
 
 ##### Files #####
 
-CBAY2025_metadata <- read_csv(file = "raw-data2/CBAY2025_metadata.csv")
-KGLTK2025_metadata <- read_csv(file = "raw-data2/KGLTK2025_metadata.csv")
-KBIMP_combined <- read_tsv(file = "processed-data/KBIMP_updatedspecies.tsv")
-vector_change <- read_csv(file = "raw-data2/vector_change.csv")
-kbimp2024_sampledata_clean <- read_csv(file = "processed-data/kbimp2024_sampledata_clean.csv")
-nonbiting_species <- read.csv(file = "raw-data2/non_biting_species.csv")
-expectedbf <- read.csv(file = "raw-data2/expectedbf.csv")
-NBP <- read.csv(file = "raw-data2/NorthernBiodiversityProgram - Simuliidae P.Schaefer.csv")
-NBP2 <- read.csv(file = "raw-data2/ROM_NBP_Simuliidae_2.csv")
-NBP3 <- read.csv(file = "raw-data2/ROM-NPB Simuliidae3.csv")
-KBIMP2024 <- read_tsv(file = "processed-data/KBIMP2024_clean.tsv")
+CBAY2025_metadata <- read_csv(
+  file = "raw-data2/CBAY2025_metadata.csv")
+
+KGLTK2025_metadata <- read_csv(
+  file = "raw-data2/KGLTK2025_metadata.csv")
+
+KBIMP_combined <- read_tsv(
+  file = "processed-data/KBIMP_updatedspecies.tsv")
+
+vector_change <- read_csv(
+  file = "raw-data2/vector_change.csv")
+
+kbimp2024_sampledata_clean <- read_csv(
+  file = "processed-data/kbimp2024_sampledata_clean.csv")
+
+nonbiting_species <- read.csv(
+  file = "raw-data2/non_biting_species.csv")
+
+expectedbf <- read.csv(
+  file = "raw-data2/expectedbf.csv")
+
+NBP <- read.csv(
+  file = "raw-data2/NorthernBiodiversityProgram - Simuliidae P.Schaefer.csv")
+
+NBP2 <- read.csv(
+  file = "raw-data2/ROM_NBP_Simuliidae_2.csv")
+
+NBP3 <- read.csv(
+  file = "raw-data2/ROM-NPB Simuliidae3.csv")
+
+KBIMP2024 <- read_tsv(
+  file = "processed-data/KBIMP2024_clean.tsv")
 
 ##### Packages #####
 
@@ -840,7 +861,8 @@ dev.off()
 
 my_download_key <- "0037903-260623161305970" 
 
-records_gbif_mos <- occ_download_get(key = my_download_key, path = "plots/") |> 
+records_gbif_mos <- occ_download_get(key = my_download_key, 
+                                     path = "Raw_data/") |> 
   occ_download_import()
 
 #filtering data between lat and lon of our sampling in CBAY
@@ -879,7 +901,8 @@ records_gbif_Kugluktuk <- records_gbif_mos %>%
 
 my_download_key <- "0037860-260623161305970" 
 
-records_gbif_bf <- occ_download_get(key = my_download_key, path = "plots/") |> 
+records_gbif_bf <- occ_download_get(key = my_download_key, 
+                                    path = "Raw_data/") |> 
   occ_download_import()
 
 #filtering data between lat and lon of our sampling in CBAY
