@@ -19,37 +19,33 @@ library(ggplot2)
 #input raw sequence data 
 
 KGLKTK2024_COI <- read_tsv(
-  file = "raw-data2/KGLKTK_2024_OTUDetails.tsv")
+  file = "Raw_data/2024_Sequence_data/KGLKTK_2024.tsv")
 
 CBAY2024_plates12456 <- read_tsv(
-  file = "raw-data2/CBAY2024_AllPlates_OTUDetails.tsv")
+  file = "Raw_data/2024_Sequence_data/CBAY2024_AllPlates.tsv")
 
 CBAY2024_plate3 <- read_tsv(
-  file = "raw-data2/CBAY2024_Plate3_OTUDetails.tsv")
+  file = "Raw_data/2024_Sequence_data/CBAY2024_Plate3.tsv")
 
 problemsamples <- read_csv(
-  file = "raw-data2/problemsamples.csv")
+  file = "Raw_data/2024_Sequence_data/problemsamples.csv")
 
 KBIMP2025_COI <- read_tsv(
-  file = "raw-data2/KBIMP2025_insectCOI_OTUDetails.tsv")
+  file = "Raw_data/2025_Sequence_data/KBIMP2025_insectCOI.tsv")
 
 df_extractioncontrols <- read_csv(
-  file = "raw-data2/extractiondata2025.csv")
+  file = "Raw_data/2025_Sequence_data/extractiondata2025.csv")
 
 df_PCRcontrols <- read_csv(
-  file = "raw-data2/PCRcontrol_data.csv")
+  file = "Raw_data/2025_Sequence_data/PCRcontrol_data.csv")
 
 kbimp2024_sampledata <- read_csv(
-  file = "raw-data2/KBIMP2024_specimendata.csv")
+  file = "Raw_data/Metadata/KBIMP2024_specimendata.csv")
 
 kbimp2024_collectionsdata <- read_csv(
-  file = "raw-data2/KBIMP2024_Collections_Tracking.csv")
+  file = "Raw_data/Metadata/KBIMP2024_Collections_Tracking.csv")
 
-df_extractioncontrols <- read_csv(
-  file = "raw-data2/extractiondata2025.csv")
 
-df_PCRcontrols <- read_csv(
-  file = "raw-data2/PCRcontrol_data.csv")
 
 #determining the number of samples in the file before filtering
 
@@ -84,7 +80,7 @@ kbimp2024_sampledata_clean <- kbimp2024_sampledata %>%
   mutate(SampleID= gsub("KBIMP_004_H10", "KBIMP-_006_G2", SampleID)) 
 
 write_csv(kbimp2024_sampledata_clean, 
-          "processed-data/kbimp2024_sampledata_clean.csv")
+          "Processed_data/kbimp2024_sampledata_clean.csv")
 
 #Filtering out/ accounting for negative controls 
 #negative control on plate 3
@@ -161,7 +157,7 @@ CBAY2024 <- rbind(CBAY2024_plates12456_fil, CBAY2024_plate3_fil)
 
 KBIMP2024 <- rbind(CBAY2024, KGLKTK2024_COI_fil)
 
-write_tsv(KBIMP2024, "processed-data/KBIMP2024_filteredCOI.tsv")
+write_tsv(KBIMP2024, "Processed_data/KBIMP2024_filteredCOI.tsv")
 
 ##### Investigating species in data #####
 
@@ -328,7 +324,7 @@ ggplot(KBIMP2025_mosquitoes, aes(y=countspecies, x=Species)) +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45)) # we got 7 different species plus unknown species
 
-write_tsv(KBIMP2025_COI_fil2, "processed-data/KBIMP2025_filteredCOI.tsv")
+write_tsv(KBIMP2025_COI_fil2, "Processed_data/KBIMP2025_filteredCOI.tsv")
 
 rm(df_extractioncontrols, df_PCRcontrols, KBIMP2025_COI, KBIMP2025_COI_fil,
    KBIMP2025_mosquitoes, KBIMP2025_blackflyspecies,KBIMP2025_bitinggenus, 

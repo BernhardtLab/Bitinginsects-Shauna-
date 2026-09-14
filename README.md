@@ -48,7 +48,7 @@ and 1000 bootstrapping iterations. We then investigated species diversity using 
 
 ## 📂 Data
 
-### 🔹 Raw Data (`Raw_data`)
+### Raw Data (`Raw_data`)
 Contains all primary data used in analysis.
 
 #### 2024 Sequence Data
@@ -69,10 +69,8 @@ Contains all primary data used in analysis.
 #### Metadata Files
 - `CBAY2025_metadata.csv`  
 - `KGLTK2025_metadata.csv`  
-- `condencedsites.csv`  
 - `KBIMP2024_specimendata.csv`  
 - `KBIMP_meta_sitenamesfixed.csv`  
-- `KBIMP2024_abundence.csv`  
 - `vector_change.csv`
 
 #### Historical Dataset
@@ -80,7 +78,7 @@ Contains all primary data used in analysis.
 
 ---
 
-### 🔹 Processed Data
+### Processed Data
 Generated during analysis and reused in later steps.
 
 #### Filtered Sequence Files
@@ -104,7 +102,7 @@ Generated during analysis and reused in later steps.
 
 ---
 
-## 📂 Required packages 
+## Required packages 
 
 The analysis scripts require R and the following packages (versions used in the manuscript are noted):
 
